@@ -11,18 +11,21 @@ import org.springframework.messaging.support.MessageBuilder;
 public class JsonKafkaProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonKafkaProducer.class);
 
-    private KafkaTemplate<String, User> kafkaTemplate;
+    private final KafkaTemplate<String, User> kafkaTemplate;
 
     public JsonKafkaProducer(KafkaTemplate<String, User> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
     public void sendMessage(User data){
+
+        LOGGER.info(String.format("Message received -> %s", data.toString()));
+
         Message<User> message = MessageBuilder
                 .withPayload(data)
                 .setHeader(KafkaHeaders.TOPIC, "dunkyjava")
                 .build();
-        
+
         kafkaTemplate.send(message);
     }
 }
