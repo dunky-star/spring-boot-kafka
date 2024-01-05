@@ -22,5 +22,7 @@ public class JsonKafkaProducer {
                 .withPayload(data)
                 .setHeader(KafkaHeaders.TOPIC, "dunkyjava")
                 .build();
+        
+        kafkaTemplate.send(message);
     }
 }
