@@ -12,4 +12,10 @@ public class KafkaTopicConfig {
         return TopicBuilder.name("dunkyjava")
                 .build();
     }
+
+    @Bean
+    public NewTopic dunkyJsonTopic(){
+        return TopicBuilder.name("dunkyJson_Topic")
+                .build();
+    }
 }
